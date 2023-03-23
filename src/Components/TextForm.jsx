@@ -51,20 +51,20 @@ export default function TextForm(props){
     }
 
     return(
-        <div className="container" >
+        <div className="container mt-3" >
             <div className="mb-3">
                 <h1 htmlFor="exampleFormControlTextarea1" className="form-label" style={{color:props.mode==="dark"?"white":"black"}}>Example textarea</h1>
                 <textarea style={{backgroundColor : props.mode==="dark"?"#34373b":"whitesmoke",color:props.mode==="dark"?"white":"black"}} className="form-control" value={Text} onChange={handleOnChange} id="exampleFormControlTextarea1" rows="5"></textarea>
             </div>
-            <button type="button" className={`btn btn-${props.mode==="dark"?"dark":"primary"} `} onClick={handleUpClick}>Upper Case</button>
-            <button type="button" className={`btn btn-${props.mode==="dark"?"dark":"primary"} mx-2`} onClick={handleLoClick}>Lower Case</button>
-            <button type="button" className={`btn btn-${props.mode==="dark"?"dark":"primary"} `} onClick={handleClearClick}>Clear Text</button>
-            <button type="button" className={`btn btn-${props.mode==="dark"?"dark":"primary"} mx-2`} onClick={handleCaClick}>Capitalize Case</button>
-            <button type="button" className={`btn btn-${props.mode==="dark"?"dark":"primary"} `} onClick={handleCopy}>Copy Text</button>
+            <button disabled={Text.length === 0} type="button" className={`btn btn-${props.mode==="dark"?"dark":"primary"} `} onClick={handleUpClick}>Upper Case</button>
+            <button disabled={Text.length === 0} type="button" className={`btn btn-${props.mode==="dark"?"dark":"primary"} mx-2`} onClick={handleLoClick}>Lower Case</button>
+            <button disabled={Text.length === 0} type="button" className={`btn btn-${props.mode==="dark"?"dark":"primary"} `} onClick={handleClearClick}>Clear Text</button>
+            <button disabled={Text.length === 0} type="button" className={`btn btn-${props.mode==="dark"?"dark":"primary"} mx-2`} onClick={handleCaClick}>Capitalize Case</button>
+            <button disabled={Text.length === 0} type="button" className={`btn btn-${props.mode==="dark"?"dark":"primary"} `} onClick={handleCopy}>Copy Text</button>
 
             <div style={{color : props.mode==="dark"?"white":"black"}}>
             <h3 className={"my-2"} >Text Summary</h3>
-            <p>{Text.split(" ").length} words and {Text.length} characters in Text</p>
+            <p>{Text.split(/\s+/).filter((element)=>{ return element.length!==0}).length} words and {Text.length} characters in Text</p>
             <h2 className={"my-2"}>Preview of Text</h2>
             <p>{Text}</p>
             </div>
